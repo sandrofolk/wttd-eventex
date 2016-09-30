@@ -82,11 +82,9 @@ class SubscriptionsNewPostInvalid(TestCase):
         self.assertFalse(Subscription.objects.exists())
 
 
-# @unittest.skip('to be removed.')
-# class SubscribeSucessMessage(TestCase):
-#     def test_message(self):
-#         data = dict(name='Alessandro de Lima Folk', cpf='12345678901',
-#                     email='sandrofolk@hotmail.com', phone='43-9985-1513')
-#
-#         response = self.client.post('/inscricao/', data, follow=True)
-#         self.assertContains(response, 'Inscrição realizada com sucesso!')
+class TemplateRegressionTest(TestCase):
+    def test_template_has_non_field_erros(self):
+        invalid_data = dict(name='Alessandro de Lima Folk', cpf='12345678901')
+        response = self.client.post(r('subscriptions:new'), invalid_data)
+
+        self.assertContains(response, '<ul class="errorlist nonfield">')
