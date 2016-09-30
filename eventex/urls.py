@@ -20,6 +20,6 @@ from eventex.core import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'înscricao/', include('eventex.subscriptions.urls', namespace='subscriptions')),
+    url(r'^inscricao/', include('eventex.subscriptions.urls', namespace='subscriptions')),
     url(r'^admin/', admin.site.urls),
 ]
